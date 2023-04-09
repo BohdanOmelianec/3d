@@ -120,6 +120,13 @@ body {
 .scene {
     position: relative;
     transform-style: preserve-3d;
+    animation: round 10s -1s infinite linear;
+}
+
+@keyframes round {
+    to {
+        transform: rotateY(360deg);
+    }
 }
 
 .cube {
@@ -130,7 +137,7 @@ body {
     top: -2.7em;
     left: -2.7em;
     will-change: transform;
-    transform: rotateX(-20deg) rotateY(25deg)
+    /* transform: rotateX(-20deg) rotateY(25deg) */
 }
 
 .side {
