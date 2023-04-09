@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --neonColor: rgb(0, 238, 255);
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #23242a;
+    font-size: 56px;
+}
+
+.box {
+    position: relative;
+    width: 380px;
+    height: 420px;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    transform-origin: bottom right;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    animation: rotate 6s linear infinite;
+}
+
+.box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    transform-origin: bottom right;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    animation: rotate 6s -3s linear infinite ;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.inner {
+    position: absolute;
+    inset: 4px;
+    background-color: #222;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+}
+
+.inner>h1 {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff2770, #ef7e1b, #36c2ed);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.box2 {
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+.box2>div {
+    transition: all 1.5s ease;
+    border-radius: 50px;
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+.box2>div:last-child {
+    transform: rotateY(180deg);
+}
+
+.box2:hover>div:first-child {
+    transform: rotateY(180deg);
+}
+.box2:hover>div:last-child {
+    transform: rotateY(0deg);
+}
+
+
+/* 3D */
+
+body {
+    perspective: 700px;
+}
+
+.scene {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.cube {
+    width: 5.4em;
+    height: 5.4em;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: -2.7em;
+    left: -2.7em;
+    will-change: transform;
+    transform: rotateX(-20deg) rotateY(25deg)
+}
+
+.side {
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    user-select: none;
+    border: 1px solid var(--neonColor);
+}
+
+.side > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.side.front {
+    transform: translateZ(1.5em);
+}
+.side.back {
+    transform: rotateY(180deg) translateZ(1.5em);
+}
+.side.right {
+    transform: rotateY(90deg) translateZ(1.5em);
+}
+.side.left {
+    transform: rotateY(-90deg) translateZ(1.5em);
+}
+.side.top {
+    transform: rotateX(90deg) translateZ(1.5em);
+}
+.side.bottom {
+    transform: rotateX(-90deg) translateZ(1.5em);
+}
+
+.cube_inner {
+    width: 3em;
+    height: 3em;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 1.2em;
+    left: 1.2em;
+    will-change: transform;
+}
+
+.outter {
+    position: absolute;
+    width: 5.4em;
+    height: 5.4em;
+    user-select: none;
+    border: 3px solid var(--neonColor);
+    border-radius: 10px;
+    box-shadow: 0 0 25px 2px var(--neonColor) inset;
+}
+
+.outter.front {
+    transform: translateZ(2.7em);
+}
+.outter.back {
+    transform: rotateY(180deg) translateZ(2.7em);
+}
+.outter.right {
+    transform: rotateY(90deg) translateZ(2.7em);
+}
+.outter.left {
+    transform: rotateY(-90deg) translateZ(2.7em);
+}
+.outter.top {
+    transform: rotateX(90deg) translateZ(2.7em);
+}
+.outter.bottom {
+    transform: rotateX(-90deg) translateZ(2.7em);
+}
+
+@keyframes roundScene {
+    to {
+        transform: rotateX(-20deg) rotateY(360deg);
+    }
+}
+
+@keyframes roundandround {
+    to {
+        transform: rotateX(360deg) rotateZ(360deg);
+    }
+}
+
+.ring {
+    animation: roundandround 7.5s -1s infinite linear;
+    position: absolute;
+    width: 5.1em;
+    height: 5.1em;
+    border:2px solid var(--neonColor);
+    border-radius: 50%;
+}
+
+.ring::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--neonColor);
+    position: absolute;
+    left: 50%;
+    top: -10px;
+}
+
+.t {
+    animation: roundandround 4.5s -1s infinite linear;
+}
