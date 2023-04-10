@@ -35,15 +35,3 @@ body.addEventListener("mouseup", () => {
     body.removeEventListener("mousemove", bodyEvent);
     x0 = y0 = null;
 });
-
-let perspective = 700;
-
-window.addEventListener("wheel", (e) => {
-    if(e.deltaY < 0 && perspective > 50) {
-        perspective -= 50;
-        body.style.perspective = `${perspective}px`;
-    } else if(e.deltaY > 0 && perspective < 700) {
-        perspective += 50;
-        body.style.perspective = `${perspective}px`
-    } else return;
-})

@@ -6,6 +6,7 @@
 
 :root {
     --neonColor: rgb(0, 238, 255);
+    --darkCOlor: #23242a;
 }
 
 body{
@@ -14,11 +15,11 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #23242a;
+    background-color: #000;
     font-size: 56px;
 }
 
-.box {
+/* .box {
     position: relative;
     width: 380px;
     height: 420px;
@@ -109,41 +110,124 @@ body{
 .box2:hover>div:last-child {
     transform: rotateY(0deg);
 }
-
+ */
 
 /* 3D */
 
 body {
-    perspective: 700px;
+    perspective: 1500px;
 }
+
+*:not(:empty) {
+    transform-style: preserve-3d;
+  }
 
 .scene {
     position: relative;
-    transform-style: preserve-3d;
-    animation: round 10s -1s infinite linear;
+    transform: rotateX(-15deg) rotateY(-15deg);
+    animation: round 36s -1s infinite linear;
 }
 
 @keyframes round {
-    to {
-        transform: rotateX(360deg) rotateY(360deg);
+    from {
+        transform: rotateX(-15deg) rotateY(0deg);
     }
+    to {
+        transform: rotateX(-15deg) rotateY(360deg);
+    }
+}
+
+.floor {
+    position: absolute;
+    width: 1300px;
+    height: 1300px;
+    background-color: rgb(35, 35, 34);
+    background-image:
+        radial-gradient(#0000, 50%, #000 66%),
+        repeating-conic-gradient(from 24deg, #2e393d 0 45deg, #2b1f1f 45deg 135deg, #363636 0 180deg);
+    background-size: 100%, 60px 60px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(90deg) translateZ(-1px);
 }
 
 .cube {
     width: 5.4em;
     height: 5.4em;
-    transform-style: preserve-3d;
     position: absolute;
-    top: -2.7em;
-    left: -2.7em;
+    bottom: 0;
+    transform: translateX(-50%);
     will-change: transform;
-    /* transform: rotateX(-20deg) */
 }
+
+.outter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    border: 3px solid var(--neonColor);
+    border-radius: 10px;
+    box-shadow: 0 0 25px 2px var(--neonColor) inset;
+}
+
+.outter.front {
+    transform: translateZ(2.7em);
+}
+.outter.back {
+    transform: rotateY(180deg) translateZ(2.7em);
+}
+.outter.right {
+    transform: rotateY(90deg) translateZ(2.7em);
+}
+.outter.left {
+    transform: rotateY(-90deg) translateZ(2.7em);
+}
+.outter.top {
+    transform: rotateX(90deg) translateZ(2.7em);
+}
+.outter.bottom {
+    transform: rotateX(-90deg) translateZ(2.7em);
+    box-shadow: 0 0 25px 2px var(--neonColor) inset, 0 0 25px 16px #162a2b;
+}
+
+.cube_inner {
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    top: 1.2em;
+    left: 1.2em;
+    will-change: top;
+    animation: levitate 4s infinite ease-out;
+}
+
+@keyframes levitate {
+    0%, 100% {
+        transform: translateY(0em);
+    }
+    50% {
+        transform: translateY(-.5em);
+    }
+}
+
+.shadow {
+    position: absolute;
+    bottom: 0;
+    background:#0007;
+    filter: blur(5px);
+    width: 3em;
+    height: 3em;
+    transform: rotateX(90deg) translateX(50%) translateZ(-1.5em);
+    animation: cubeShadow 4s infinite ease-out;
+}
+
+@keyframes cubeShadow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .4; }
+  }
 
 .side {
     position: absolute;
-    width: 3em;
-    height: 3em;
+    width: 100%;
+    height: 100%;
     user-select: none;
     border: 1px solid var(--neonColor);
 }
@@ -171,79 +255,4 @@ body {
 }
 .side.bottom {
     transform: rotateX(-90deg) translateZ(1.5em);
-}
-
-.cube_inner {
-    width: 3em;
-    height: 3em;
-    transform-style: preserve-3d;
-    position: absolute;
-    top: 1.2em;
-    left: 1.2em;
-    will-change: transform;
-}
-
-.outter {
-    position: absolute;
-    width: 5.4em;
-    height: 5.4em;
-    user-select: none;
-    border: 3px solid var(--neonColor);
-    border-radius: 10px;
-    box-shadow: 0 0 25px 2px var(--neonColor) inset;
-}
-
-.outter.front {
-    transform: translateZ(2.7em);
-}
-.outter.back {
-    transform: rotateY(180deg) translateZ(2.7em);
-}
-.outter.right {
-    transform: rotateY(90deg) translateZ(2.7em);
-}
-.outter.left {
-    transform: rotateY(-90deg) translateZ(2.7em);
-}
-.outter.top {
-    transform: rotateX(90deg) translateZ(2.7em);
-}
-.outter.bottom {
-    transform: rotateX(-90deg) translateZ(2.7em);
-}
-
-@keyframes roundScene {
-    to {
-        transform: rotateX(-20deg) rotateY(360deg);
-    }
-}
-
-@keyframes roundandround {
-    to {
-        transform: rotateX(360deg) rotateZ(360deg);
-    }
-}
-
-.ring {
-    animation: roundandround 7.5s -1s infinite linear;
-    position: absolute;
-    width: 5.1em;
-    height: 5.1em;
-    border:2px solid var(--neonColor);
-    border-radius: 50%;
-}
-
-.ring::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--neonColor);
-    position: absolute;
-    left: 50%;
-    top: -10px;
-}
-
-.t {
-    animation: roundandround 4.5s -1s infinite linear;
 }
