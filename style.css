@@ -6,18 +6,13 @@
 
 :root {
     --neonColor: rgb(0, 238, 255);
-    --darkCOlor: #23242a;
+    --darkColor: #23242a;
 }
 
 body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background-color: #000;
     font-size: 56px;
-    overflow: hidden;
 }
 
 /* .box {
@@ -115,13 +110,19 @@ body{
 
 /* 3D */
 
-body {
-    perspective: 1500px;
-}
 
 *:not(:empty) {
     transform-style: preserve-3d;
-  }
+}
+
+#first {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1500px;
+}
 
 .scene {
     position: relative;
@@ -264,4 +265,266 @@ body {
 }
 .side.bottom {
     transform: rotateX(-90deg) translateZ(1.5em);
+}
+
+
+
+
+#second {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 700px;
+}
+
+.scene2 {
+    position: relative;
+    transform: rotateX(-15deg) rotateY(-15deg);
+    animation: round 36s -1s infinite linear;
+}
+
+@keyframes round {
+    from {
+        transform: rotateX(-15deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(-15deg) rotateY(360deg);
+    }
+}
+
+.floor2 {
+    position: absolute;
+    width: 1300px;
+    height: 1300px;
+    background-color: rgb(35, 35, 34);
+    background: url("https://previews.123rf.com/images/nenovbrothers/nenovbrothers1901/nenovbrothers190100376/116916064-sand-background-texture.jpg");
+    background-image:
+        radial-gradient(#0000, 50%, #000 66%),
+        /* repeating-conic-gradient(from 45deg, #575757 0 90deg, #9c9c9c 90deg 180deg ), */
+        url("https://www.patternpictures.com/wp-content/uploads/Beach-Sand-patternpictures-5205-1500x997.jpg");
+    background-size: 100%, 10% 15%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(90deg) translateZ(-1px);
+}
+
+.leftColumn, .rightColumn {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-2.6em);
+    width: .3em;
+    height: 4em;
+    background: linear-gradient(90deg, steelblue 10%, #536477 90%);
+}
+
+.rightColumn {
+    transform: translateX(2.6em);
+}
+
+.leftside, .rightside, .frontside {
+    width: .3em;
+    height: 4em;
+    background: linear-gradient(90deg, steelblue 10%, #536477 90%);
+    position: absolute;
+}
+
+.leftside {
+    transform: rotateY(90deg);
+    transform-origin: right;
+}
+
+.rightside {
+    transform: rotateY(-90deg);
+    transform-origin: left;
+}
+
+.frontside {
+    transform: translateZ(.3em);
+}
+
+
+
+.centerLine {
+    position: absolute;
+    bottom: 0;
+    transform: rotateZ(90deg) translateX(-75px);
+    width: .3em;
+    height: 5.5em;
+    /* background: linear-gradient(#0057b8 10%, #ffd700 90%); */
+    background: linear-gradient(90deg, steelblue 10%, #536477 90%);
+}
+
+.topside, .bottomside, .frontside {
+    width: .3em;
+    height: 5.5em;
+    background: linear-gradient(90deg, steelblue 10%, #536477 90%);
+    position: absolute;
+}
+
+.topside {
+    transform: rotateY(90deg);
+    transform-origin: right;
+}
+
+.bottomside {
+    transform: rotateY(-90deg);
+    transform-origin: left;
+}
+
+.frontside {
+    transform: translateZ(.3em);
+}
+
+.columnShadow {
+    position: absolute;
+    bottom: 0;
+    width: 5.5em;
+    height: 1.7em;
+    border-left: .3em solid #0005;
+    border-right: .3em solid #0005;
+    border-top: .3em solid #0005;
+    filter: blur(8px);
+    transform-origin: bottom;
+    transform: translateX(-47%) translateZ(.15em) rotateX(-90deg) skewX(20deg);
+    /* animation: columnShadow 36s -1s infinite linear; */
+}
+
+@keyframes columnShadow {
+    0% {
+        transform: translateX(-50%) translateZ(.15em) rotateX(-90deg) skewX(0deg);
+    }
+    50% {
+        transform: translateX(-50%)  translateZ(.15em) rotateX(-90deg) skewX(180deg);
+    }
+    100% {
+        transform: translateX(-50%) translateZ(.15em) rotateX(-90deg) skewX(0deg);
+    }
+
+}
+
+.swing {
+    width: 2em;
+    height: 3em;
+    /* background: pink; */
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    transform-origin: top;
+    transform: translateX(-50%) translateZ(.15em);
+    animation: swing 2s infinite ease-in-out;
+}
+
+@keyframes swing {
+    0% {
+        transform: translateX(-50%) translateZ(.15em) rotateX(-35deg);
+    }
+    50% {
+        transform: translateX(-50%) translateZ(.15em) rotateX(35deg);
+    }
+    100% {
+        transform: translateX(-50%) translateZ(.15em) rotateX(-35deg);
+    }
+}
+
+.chain {
+    width: 2em;
+    height: 3em;
+    border-left: 3px dashed #9d3c06;
+    border-right: 3px dashed #9d3c06;
+    position: absolute;
+    /* bottom: 1em; */
+    /* left: 0; */
+}
+.chain:nth-child(1) {
+    transform: rotateX(-8deg);
+    transform-origin: top;
+}
+.chain:nth-child(2) {
+    transform: rotateX(8deg);
+    transform-origin: top;
+}
+
+.seat {
+    width: 2em;
+    height: 1em;
+    background: url("https://images.all-free-download.com/images/graphiclarge/wooden_texture_background_313108.jpg");
+    background-size: 100%;
+    position: absolute;
+    bottom: -.5em;
+    left: 0;
+    transform: rotateX(90deg);
+}
+
+.swingShadow {
+    width: 2.2em;
+    height: 1.1em;
+    background: #0009;
+    filter: blur(10px);
+    position: absolute;
+    bottom: -.5em;
+    left: 0;
+    transform: translateX(-50%) rotateX(90deg);
+    animation: swingShadow 2s infinite ease-in-out;
+
+}
+
+@keyframes swingShadow {
+    0%, 100% {
+        transform: translateX(-50%) translateZ(-2em) rotateX(90deg) ;
+        filter: blur(28px);
+    }
+    50% {
+        transform: translateX(-50%) translateZ(2em) rotateX(90deg) ;
+        filter: blur(28px);
+    }
+    25%, 75% {
+        filter: blur(15px)
+        
+    }
+}
+
+.bush {
+    position: absolute;
+    bottom: 0;
+    width: 2em;
+    height: 2em;
+    transform: translateX(1.5em) translateY(.3em)  translateZ(1em);
+    animation: roundBush 36s -1s infinite linear reverse;
+}
+
+.bush2 {
+    position: absolute;
+    bottom: 0;
+    filter: brightness(.7);
+    width: 1.5em;
+    height: 1.5em;
+    transform: translateX(-5.5em) translateY(.3em) translateZ(-2em);
+    animation: roundBush2 36s -1s infinite linear reverse;
+}
+
+@keyframes roundBush {
+    from {
+        transform: translateX(1.5em) translateY(.3em) translateZ(1em) rotateY(0deg);
+    }
+    to {
+        transform: translateX(1.5em) translateY(.3em) translateZ(1em) rotateY(360deg);
+    }
+}
+@keyframes roundBush2 {
+    from {
+        transform: translateX(-5.5em) translateY(.3em) translateZ(-2em) rotateY(0deg);
+    }
+    to {
+        transform: translateX(-5.5em) translateY(.3em) translateZ(-2em) rotateY(360deg);
+    }
+}
+
+.towel {
+    position: absolute;
+    bottom: 0;
+    filter: brightness(.8);
+    width: 2.2em;
+    height: 3.5em;
+    transform: translateX(-6em) translateY(1.75em) translateZ(5.4em) rotateX(90deg) rotateZ(-35deg);
 }
